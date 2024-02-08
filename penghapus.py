@@ -237,8 +237,8 @@ elif len(sys.argv) > 3 and len(sys.argv) < 5 and (str(sys.argv[1]) == "-a" or st
             print(cl(f"Hapus file {out} {ss}","green"))
             print(cl(f"Membaca file {ee}","green"))
             fl = pd.read_csv(ee, sep=';')
-            hai = fl['created_at'].sum()
-            kk = fl.head(0)d
+            # hai = fl['created_at'].sum()
+            kk = fl.head(0)
             for uhui in kk:
                 if uhui == "created_at":
                     vv = fl[uhui]
@@ -274,10 +274,11 @@ elif len(sys.argv) > 3 and len(sys.argv) < 5 and (str(sys.argv[1]) == "-a" or st
             sys.exit()
             return fl
         elif fl.endswith('.csv'):
+            n = str(fl).split('.')
             print(cl(f"\nFormat file sudah csv","green"))
-            print(cl(f"Membaca file {fl}","green"))
+            print(cl(f"Membaca file {n[0]}.{n[1]}","green"))
             fl = pd.read_csv(fl, sep=';')
-            print(cl(f"Membaca file {fl} {ss}","green"))
+            print(cl(f"Membaca file {n[0]}.{n[1]} {ss}","green"))
             return fl
 
     try:
@@ -301,7 +302,7 @@ elif len(sys.argv) > 3 and len(sys.argv) < 5 and (str(sys.argv[1]) == "-a" or st
             data[col] = data[col].astype(str).apply(url)
             print(cl(f"{prs} {ff[2]} pada {file} {sel}","green"))
             print(cl(f"{prs} unnamed pada {file}","green"))
-            data = unammed(data, prs, output, file, sel)
+            data = unammed(data, prs, file, sel)
             print(cl(f"{prs} unnamed pada {file} {sel}","green"))
             print(cl(f"{prs} spasi depan berlebih pada {file}","green"))
             data[col] = data[col].astype(str).apply(lambda x: x.lstrip())
@@ -333,7 +334,7 @@ elif len(sys.argv) > 3 and len(sys.argv) < 5 and (str(sys.argv[1]) == "-a" or st
             print(cl(f"Proses konversi all value pada {file2} ke lower {sel}","green"))
             print(cl(f"Proses menyimpan data ke {file2}","green"))
             data.to_csv(file2, index=False)
-            time.sleep(1)   
+            time.sleep(1)
             print(cl(f"Proses menyimpan data ke {file2} {sel}","green"))
             print(cl(f"Rubah file {file2} ke {output}","green"))
             perintah(mv)
